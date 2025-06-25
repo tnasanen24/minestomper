@@ -12,25 +12,11 @@ import sweeperlib
 
 # The Game state dictionary
 state = {
-    "field": "",
-    "field_mines": "",
-    "field_lengths": "",
-    "mine_amount": "",
-    "win": "",
-    "started": False,
-    "stats": ""
+
 }
 
 stats = {
-    "current time": time.strftime("%d-%m-%Y %H:%M:%S", time.localtime()),
-    "play_duration": 0,
-    "turns" : 0,
-    "mines_found": "",
-    "result": "",
-    "clicks": 0,
-    "x_length": 0,
-    "y_length": 0,
-    "mine_amount": 0
+
 }
 
 saved_stats = [
@@ -429,8 +415,11 @@ def main():
     menu_input = prompt_string_input(INP_MSG["choose"], ERR_MSG["Str err"])
 
     if menu_input == "p" or menu_input == "play":
-        init_game_state()
-        start_game()
+        try:
+            init_game_state()
+            start_game()
+        except KeyboardInterrupt:
+           print("\n\nKeyboard exception detected. Closing game.")
     elif menu_input == "s" or menu_input == "see stats":
         data = load_game_stats()
         if data:
@@ -481,12 +470,21 @@ def start_game():
     """
     Starts the game graphics wise.
     """
+    print("Creating window with size:", state["field_lengths"])
+    width = state["field_lengths"][0] * 40
+    height = state["field_lengths"][1] * 40
     sweeperlib.load_sprites("sprites")
-    sweeperlib.create_window()
+    if width < 401 and height < 401:
+        sweeperlib.create_window(400, 400)
+    else:
+        sweeperlib.create_window(width, height)
     sweeperlib.set_draw_handler(draw_handler)
     sweeperlib.set_mouse_handler(mouse_handler)
     sweeperlib.set_interval_handler(interval_handler, 1/60)
     sweeperlib.start()
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nKeyboard exception detected. Closing game.")
