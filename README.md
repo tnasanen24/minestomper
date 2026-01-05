@@ -1,4 +1,4 @@
-#Minestomper
+# Minestomper
 
 ![Terminal](terminal.png)
 ![Terminal](gamewindow.png)
