@@ -6,6 +6,7 @@ Game playes in customable size grid and custom mine amounts.
 This module implements a complete Minesweeper game with graphics using the sweeperlib library.
 It handles game state management, mine placement, tile revelation using flood fill algorithm,
 game statistics tracking, and user interaction through mouse input.
+
 Game Flow:
 1. User selects to play, view stats, or quit from main menu
 2. Player specifies field dimensions and number of mines
@@ -14,6 +15,7 @@ Game Flow:
 5. Subsequent clicks reveal tiles or flag mines
 6. Game ends on mine hit (loss) or all non-mine tiles revealed (win)
 7. Game statistics are saved to JSON file
+
 Key Features:
 - Dynamic field size (up to 40x40)
 - Mine placement with first-click safety
@@ -21,6 +23,7 @@ Key Features:
 - Game statistics persistence
 - Mouse-based tile interaction (left-click to reveal, right-click to flag)
 - Real-time game timer and turn counter
+
 Global State:
 - state: Current game board and metadata
 - stats: Current game statistics
